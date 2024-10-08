@@ -26,7 +26,7 @@ const BarChartComponent = () => {
   // Fetch statistics from the backend
   const fetchBarChartData = useCallback(async () => {
     try {
-      const response = await axios.get('http://localhost:5000/data/statistics.json');
+      const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/data/statistics.json`);
 
       const labels = Object.keys(response.data); // Get the month names
 

@@ -13,7 +13,7 @@ const StatisticsBox = ({ selectedMonth }) => {
   const fetchStatistics = useCallback(async () => {
     try {
       // Fetch the statistics.json file directly from the backend server
-      const response = await axios.get('http://localhost:5000/data/statistics.json');
+      const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/data/statistics.json`);
       
       // Log the full response data for testing purposes
       console.log('Fetched statistics data:', response.data);
