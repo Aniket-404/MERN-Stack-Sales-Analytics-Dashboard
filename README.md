@@ -70,3 +70,8 @@ Contributions are always welcome! If you find any bugs or have suggestions for i
 ## License 📜
 
 This project is licensed under the MIT License. Feel free to use, modify, and distribute it as you wish!
+
+# Result 📷
+
+## Statistics Table
+
