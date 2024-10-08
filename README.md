@@ -70,3 +70,17 @@ Contributions are always welcome! If you find any bugs or have suggestions for i
 ## License 📜
 
 This project is licensed under the MIT License. Feel free to use, modify, and distribute it as you wish!
+
+# Result 📷
+
+## Statistics Table
+
+![stat table](https://github.com/user-attachments/assets/a8f29ccb-59a2-4d6b-8940-21330e0650a6)
+
+## Transactions Table
+
+![transa](https://github.com/user-attachments/assets/acb17bc8-b1a7-43fa-bfa8-30028dff1001)
+
+## Sales Statistic Graph
+
+![bar](https://github.com/user-attachments/assets/9d523f69-2c1d-438f-a164-d50bc23c2ca7)

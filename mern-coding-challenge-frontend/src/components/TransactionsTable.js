@@ -12,7 +12,7 @@ const TransactionsTable = ({ selectedMonth }) => {
 
   const fetchTransactions = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/transactions', {
+      const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/transactions`, {
         params: {
           month: selectedMonth,
           search,

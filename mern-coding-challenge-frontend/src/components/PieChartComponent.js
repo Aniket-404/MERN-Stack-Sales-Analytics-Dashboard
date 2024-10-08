@@ -21,7 +21,7 @@ const PieChartComponent = ({ selectedMonth }) => {
 
   const fetchPieData = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/pie-chart', {
+      const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/pie-chart`, {
         params: { month: selectedMonth }
       });
       setPieData(response.data);
