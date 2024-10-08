@@ -7,7 +7,6 @@ import { Chart, ArcElement, Tooltip, Legend } from 'chart.js';
 
 Chart.register(ArcElement, Tooltip, Legend);
 
-// Helper function to generate colors
 const generateColors = (num) => {
   const colors = [];
   for(let i = 0; i < num; i++) {

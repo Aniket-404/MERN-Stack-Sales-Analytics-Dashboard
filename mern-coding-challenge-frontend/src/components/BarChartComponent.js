@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import axios from 'axios';
-import { Bar } from 'react-chartjs-2'; // Import the Bar component from Chart.js
+import { Bar } from 'react-chartjs-2'; 
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -9,33 +9,28 @@ import {
   Title,
   Tooltip,
   Legend,
-} from 'chart.js'; // Import necessary components from Chart.js
+} from 'chart.js'; 
 
-// Register the necessary components
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 const BarChartComponent = () => {
-  // State for storing the data to be displayed in the bar chart
   const [barChartData, setBarChartData] = useState({
-    labels: [], // This will hold the month names
+    labels: [],
     totalSalesData: [],
     totalSoldData: [],
     totalNotSoldData: [],
   });
 
-  // Fetch statistics from the backend
   const fetchBarChartData = useCallback(async () => {
     try {
       const response = await axios.get('http://localhost:5000/data/statistics.json');
 
-      const labels = Object.keys(response.data); // Get the month names
+      const labels = Object.keys(response.data); 
 
-      // Initialize data arrays
       const totalSalesData = [];
       const totalSoldData = [];
       const totalNotSoldData = [];
 
-      // Iterate over each month's data and populate the arrays
       labels.forEach(month => {
         const monthData = response.data[month];
         totalSalesData.push(monthData.totalSales || 0);
@@ -43,7 +38,6 @@ const BarChartComponent = () => {
         totalNotSoldData.push(monthData.totalNotSold || 0);
       });
 
-      // Update state with fetched data
       setBarChartData({
         labels,
         totalSalesData,
@@ -55,7 +49,6 @@ const BarChartComponent = () => {
     }
   }, []);
 
-  // Trigger data fetch when the component mounts
   useEffect(() => {
     fetchBarChartData();
   }, [fetchBarChartData]);
@@ -104,7 +97,7 @@ const BarChartComponent = () => {
               },
             },
           }}
-          height={400} // Fixed height
+          height={400}
         />
       </div>
 
@@ -155,7 +148,7 @@ const BarChartComponent = () => {
               },
             },
           }}
-          height={400} // Fixed height
+          height={400}
         />
       </div>
     </div>

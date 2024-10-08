@@ -7,7 +7,7 @@ const TransactionsTable = ({ selectedMonth }) => {
   const [transactions, setTransactions] = useState([]);
   const [search, setSearch] = useState('');
   const [page, setPage] = useState(1);
-  const perPage = 3; // Set perPage to 10
+  const perPage = 3; 
   const [total, setTotal] = useState(0);
 
   const fetchTransactions = async () => {
@@ -28,7 +28,7 @@ const TransactionsTable = ({ selectedMonth }) => {
   };
 
   useEffect(() => {
-    setPage(1); // Reset to first page when month or search changes
+    setPage(1);
   }, [selectedMonth, search]);
 
   useEffect(() => {

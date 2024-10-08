@@ -1,21 +1,17 @@
-// controllers/statisticsController.js
-
 const fs = require('fs');
 const path = require('path');
 const Transaction = require('../models/Transaction');
 
-// Helper function to convert month number to month name
 const getMonthName = (monthNumber) => {
   const monthNames = [
     'January', 'February', 'March', 'April', 'May', 'June',
     'July', 'August', 'September', 'October', 'November', 'December'
   ];
-  return monthNames[monthNumber - 1]; // Adjusting for zero-based index
+  return monthNames[monthNumber - 1];
 };
 
 const getStatistics = async (req, res) => {
   try {
-    // Grouping transactions by month and calculating total sales and counts
     const statistics = await Transaction.aggregate([
       {
         $group: {
@@ -39,10 +35,9 @@ const getStatistics = async (req, res) => {
       },
     ]);
 
-    // Return statistics as an object keyed by month name for easier access
     const statisticsByMonth = {};
     statistics.forEach(stat => {
-      const monthName = getMonthName(stat.month); // Convert month number to name
+      const monthName = getMonthName(stat.month); 
       statisticsByMonth[monthName] = {
         totalSales: stat.totalSales,
         totalSold: stat.totalSold,
@@ -50,11 +45,9 @@ const getStatistics = async (req, res) => {
       };
     });
 
-    // Save the statistics in a file
     const filePath = path.join(__dirname, '..', 'data', 'statistics.json');
     fs.writeFileSync(filePath, JSON.stringify(statisticsByMonth, null, 2));
 
-    // Respond with the statistics file content
     res.json(statisticsByMonth);
   } catch (error) {
     console.error('Error fetching statistics:', error);

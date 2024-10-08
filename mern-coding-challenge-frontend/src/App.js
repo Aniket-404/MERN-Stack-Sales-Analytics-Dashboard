@@ -1,5 +1,3 @@
-// src/App.js
-
 import React, { useState } from 'react';
 import TransactionsTable from './components/TransactionsTable';
 import StatisticsBox from './components/StatisticsBox';
@@ -35,7 +33,6 @@ const App = () => {
       <TransactionsTable selectedMonth={selectedMonth} />
       <div className="charts">
         <BarChartComponent selectedMonth={selectedMonth} />
-        {/* <PieChartComponent selectedMonth={selectedMonth} /> */}
       </div>
     </div>
   );

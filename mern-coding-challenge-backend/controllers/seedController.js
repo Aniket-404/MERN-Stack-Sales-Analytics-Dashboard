@@ -3,20 +3,16 @@ const Transaction = require('../models/Transaction');
 
 const seedDatabase = async (req, res) => {
   try {
-    // Fetch data from third-party API
     const response = await axios.get('https://s3.amazonaws.com/roxiler.com/product_transaction.json');
     const data = response.data;
 
-    // Check if data is an array; if not, wrap it into an array
     const transactionsData = Array.isArray(data) ? data : [data];
 
     console.log(`Fetched ${transactionsData.length} transactions from the API.`);
 
-    // Clear existing data
     await Transaction.deleteMany({});
     console.log('Cleared existing transactions in the database.');
 
-    // Seed database
     const transactions = transactionsData.map(item => ({
       title: item.title,
       description: item.description,

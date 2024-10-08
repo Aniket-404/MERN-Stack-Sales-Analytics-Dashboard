@@ -2,40 +2,31 @@ import React, { useEffect, useState, useCallback } from 'react';
 import axios from 'axios';
 
 const StatisticsBox = ({ selectedMonth }) => {
-  // Initialize state variables for statistics
   const [statistics, setStatistics] = useState({
     totalSales: 0,
     totalSold: 0,
     totalNotSold: 0
   });
 
-  // Define the fetchStatistics function and wrap it in useCallback to avoid the dependency error
   const fetchStatistics = useCallback(async () => {
     try {
-      // Fetch the statistics.json file directly from the backend server
       const response = await axios.get('http://localhost:5000/data/statistics.json');
       
-      // Log the full response data for testing purposes
       console.log('Fetched statistics data:', response.data);
       
-      // Use the selectedMonth as the key (assuming selectedMonth is a string like "January", etc.)
       const selectedStats = response.data[selectedMonth];
 
       if (selectedStats) {
-        // Log the specific data for the selected month
         console.log(`Statistics for month ${selectedMonth}:`, selectedStats);
 
-        // Store the values in the state variables
         setStatistics({
           totalSales: selectedStats.totalSales || 0,
-          totalSold: selectedStats.totalSold || 0,  // Using totalSold from the fetched data
-          totalNotSold: selectedStats.totalNotSold || 0 // Using totalNotSold from the fetched data
+          totalSold: selectedStats.totalSold || 0, 
+          totalNotSold: selectedStats.totalNotSold || 0 
         });
       } else {
-        // Log that no statistics were found for the selected month
         console.log(`No statistics found for month ${selectedMonth}`);
 
-        // Reset if no statistics found for the selected month
         setStatistics({
           totalSales: 0,
           totalSold: 0,
@@ -43,15 +34,13 @@ const StatisticsBox = ({ selectedMonth }) => {
         });
       }
     } catch (error) {
-      // Log any errors encountered during the fetch
       console.error('Error fetching statistics:', error);
     }
-  }, [selectedMonth]); // Dependencies: re-fetch whenever selectedMonth changes
+  }, [selectedMonth]);
 
-  // Trigger data fetch when the component mounts or the selected month changes
   useEffect(() => {
     fetchStatistics();
-  }, [fetchStatistics]); // Include the memoized fetchStatistics in dependency array
+  }, [fetchStatistics]); 
 
   return (
     <div>
