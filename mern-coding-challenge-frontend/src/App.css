@@ -1,0 +1,75 @@
+/* src/App.css */
+
+.container {
+  width: 90%;
+  margin: auto;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.controls {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+.controls label {
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.charts {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 40px;
+}
+
+.charts > div {
+  width: 48%;
+}
+
+@media (max-width: 768px) {
+  .charts {
+    flex-direction: column;
+  }
+  
+  .charts > div {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+}
+
+table {
+  border-collapse: collapse;
+}
+
+table th, table td {
+  text-align: left;
+  padding: 8px;
+}
+
+table th {
+  background-color: #f2f2f2;
+}
+
+button {
+  padding: 8px 16px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+button:hover:not(:disabled) {
+  background-color: #0056b3;
+}

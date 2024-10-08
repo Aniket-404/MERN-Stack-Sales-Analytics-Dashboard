@@ -1,0 +1,62 @@
+{
+  "January": {
+    "totalSales": 5284.9,
+    "totalSold": 2,
+    "totalNotSold": 4
+  },
+  "February": {
+    "totalSales": 179.7,
+    "totalSold": 1,
+    "totalNotSold": 2
+  },
+  "March": {
+    "totalSales": 798,
+    "totalSold": 1,
+    "totalNotSold": 2
+  },
+  "April": {
+    "totalSales": 167.84,
+    "totalSold": 2,
+    "totalNotSold": 1
+  },
+  "May": {
+    "totalSales": 1250.55,
+    "totalSold": 2,
+    "totalNotSold": 4
+  },
+  "June": {
+    "totalSales": 7699.3,
+    "totalSold": 4,
+    "totalNotSold": 6
+  },
+  "July": {
+    "totalSales": 1319.8899999999999,
+    "totalSold": 2,
+    "totalNotSold": 4
+  },
+  "August": {
+    "totalSales": 899.88,
+    "totalSold": 2,
+    "totalNotSold": 0
+  },
+  "September": {
+    "totalSales": 1920.97,
+    "totalSold": 4,
+    "totalNotSold": 3
+  },
+  "October": {
+    "totalSales": 1447.98,
+    "totalSold": 3,
+    "totalNotSold": 3
+  },
+  "November": {
+    "totalSales": 29.549999999999997,
+    "totalSold": 1,
+    "totalNotSold": 4
+  },
+  "December": {
+    "totalSales": 529,
+    "totalSold": 2,
+    "totalNotSold": 1
+  }
+}
