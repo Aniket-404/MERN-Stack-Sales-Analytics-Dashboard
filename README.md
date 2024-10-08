@@ -1,8 +1,8 @@
-# MERN Stack Coding Challenge 🚀
+# MERN Stack Sales Analytics Dashboard 🚀
 
 ## Overview
 
-Welcome to the **MERN Stack Coding Challenge**! This project is built using the MERN stack (MongoDB, Express.js, React.js, Node.js) and provides insights into sales data. Users can select a month and view statistics through interactive tables and bar charts, making it easy to visualize key sales metrics.
+Welcome to the **MERN Stack Sales Analytics Dashboard**! This project is built using the MERN stack (MongoDB, Express.js, React.js, Node.js) and provides insights into sales data. Users can select a month and view statistics through interactive tables and bar charts, making it easy to visualize key sales metrics.
 
 ## Features ✨
 
