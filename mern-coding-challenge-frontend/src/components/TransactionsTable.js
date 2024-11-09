@@ -1,5 +1,3 @@
-// src/components/TransactionsTable.js
-
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -7,7 +5,7 @@ const TransactionsTable = ({ selectedMonth }) => {
   const [transactions, setTransactions] = useState([]);
   const [search, setSearch] = useState('');
   const [page, setPage] = useState(1);
-  const perPage = 3; 
+  const perPage = 5; // Increased the number of items per page for better user experience
   const [total, setTotal] = useState(0);
 
   const fetchTransactions = async () => {
@@ -53,18 +51,24 @@ const TransactionsTable = ({ selectedMonth }) => {
   };
 
   return (
-    <div>
+    <div className="transaction-table">
       <h2>Transactions</h2>
       <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '20px' }}>
-        <input 
-          type="text" 
-          placeholder="Search transaction" 
-          value={search} 
-          onChange={handleSearchChange} 
-          style={{ padding: '8px', width: '200px' }}
+        <input
+          type="text"
+          placeholder="Search transaction"
+          value={search}
+          onChange={handleSearchChange}
+          style={{
+            padding: '8px',
+            width: '200px',
+            borderRadius: '4px',
+            border: '1px solid #ccc',
+            fontSize: '14px'
+          }}
         />
       </div>
-      <table border="1" width="100%" cellPadding="10">
+      <table>
         <thead>
           <tr>
             <th>ID</th>
@@ -85,7 +89,7 @@ const TransactionsTable = ({ selectedMonth }) => {
               <td>${tx.price.toFixed(2)}</td>
               <td>{tx.category}</td>
               <td>{tx.sold ? 'Yes' : 'No'}</td>
-              <td><img src={tx.image} alt={tx.title} width="50" /></td>
+              <td><img src={tx.image} alt={tx.title} width="50" style={{ borderRadius: '4px' }} /></td>
             </tr>
           )) : (
             <tr>
