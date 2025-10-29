@@ -12,7 +12,8 @@ const StatisticsBox = ({ selectedMonth }) => {
   const fetchStatistics = useCallback(async () => {
     setIsLoading(true);
     try {
-      const response = await axios.get('http://localhost:5000/data/statistics.json');
+      const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000';
+      const response = await axios.get(`${backendUrl}/api/statistics`);
       console.log('Fetched statistics data:', response.data);
       const selectedStats = response.data[selectedMonth];
 

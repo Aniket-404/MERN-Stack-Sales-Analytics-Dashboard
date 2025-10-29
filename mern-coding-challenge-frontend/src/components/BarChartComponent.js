@@ -25,7 +25,8 @@ const BarChartComponent = () => {
   const fetchBarChartData = useCallback(async () => {
     setIsLoading(true);
     try {
-      const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/data/statistics.json`);
+      const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000';
+      const response = await axios.get(`${backendUrl}/api/statistics`);
 
       const labels = Object.keys(response.data); 
 
