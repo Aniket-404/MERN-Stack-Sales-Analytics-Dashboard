@@ -24,10 +24,7 @@ app.use(express.json());
 
 const connectDB = async () => {
   try {
-    await mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/mern_coding_challenge', {
-      useNewUrlParser: true,
-      useUnifiedTopology: true
-    });
+    await mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/mern_coding_challenge');
     console.log('MongoDB connected');
   } catch (error) {
     console.error('MongoDB connection failed:', error.message);
