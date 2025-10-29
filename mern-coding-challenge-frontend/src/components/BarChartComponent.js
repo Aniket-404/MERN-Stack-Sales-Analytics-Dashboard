@@ -20,8 +20,10 @@ const BarChartComponent = () => {
     totalSoldData: [],
     totalNotSoldData: [],
   });
+  const [isLoading, setIsLoading] = useState(true);
 
   const fetchBarChartData = useCallback(async () => {
+    setIsLoading(true);
     try {
       const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/data/statistics.json`);
 
@@ -46,6 +48,8 @@ const BarChartComponent = () => {
       });
     } catch (error) {
       console.error('Error fetching bar chart data:', error);
+    } finally {
+      setIsLoading(false);
     }
   }, []);
 
@@ -53,103 +57,201 @@ const BarChartComponent = () => {
     fetchBarChartData();
   }, [fetchBarChartData]);
 
+  if (isLoading) {
+    return (
+      <div style={{ textAlign: 'center', padding: '40px' }}>
+        <div className="spinner"></div>
+        <p>Loading charts...</p>
+      </div>
+    );
+  }
+
+  const chartOptions = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        display: true,
+        position: 'top',
+        labels: {
+          font: {
+            size: 12,
+            weight: '600'
+          },
+          padding: 15,
+          usePointStyle: true,
+        }
+      },
+      tooltip: {
+        mode: 'index',
+        intersect: false,
+        backgroundColor: 'rgba(0, 0, 0, 0.8)',
+        padding: 12,
+        cornerRadius: 8,
+        titleFont: {
+          size: 14,
+          weight: 'bold'
+        },
+        bodyFont: {
+          size: 13
+        }
+      },
+    },
+    scales: {
+      y: {
+        beginAtZero: true,
+        grid: {
+          color: 'rgba(0, 0, 0, 0.05)',
+          drawBorder: false,
+        },
+        ticks: {
+          font: {
+            size: 11
+          }
+        }
+      },
+      x: {
+        grid: {
+          display: false,
+        },
+        ticks: {
+          font: {
+            size: 11
+          }
+        }
+      },
+    },
+  };
+
   return (
-    <div style={{ display: 'flex', justifyContent: 'space-around', margin: '0 auto', width: '100%' }}>
-      <div style={{ width: '45%', height: '400px' }}>
-        <h3>Total Sales</h3>
-        <Bar
-          data={{
-            labels: barChartData.labels,
-            datasets: [
-              {
-                label: 'Total Sales',
-                data: barChartData.totalSalesData,
-                backgroundColor: 'rgba(75, 192, 192, 0.6)',
-              },
-            ],
-          }}
-          options={{
-            responsive: true,
-            maintainAspectRatio: false,
-            scales: {
-              y: {
-                beginAtZero: true,
-                title: {
-                  display: true,
-                  text: 'Total Sales',
+    <div style={{ width: '100%' }}>
+      <div style={{ marginBottom: '30px' }}>
+        <h3 style={{ 
+          fontSize: '1.3rem', 
+          fontWeight: '700', 
+          marginBottom: '10px',
+          color: '#333'
+        }}>
+          💰 Total Sales Overview
+        </h3>
+        <p style={{ color: '#666', fontSize: '0.9rem', marginBottom: '20px' }}>
+          Monthly sales revenue across all periods
+        </p>
+        <div style={{ height: '350px' }}>
+          <Bar
+            data={{
+              labels: barChartData.labels,
+              datasets: [
+                {
+                  label: 'Total Sales ($)',
+                  data: barChartData.totalSalesData,
+                  backgroundColor: 'rgba(102, 126, 234, 0.8)',
+                  borderColor: 'rgba(102, 126, 234, 1)',
+                  borderWidth: 2,
+                  borderRadius: 8,
+                  hoverBackgroundColor: 'rgba(102, 126, 234, 1)',
+                },
+              ],
+            }}
+            options={{
+              ...chartOptions,
+              scales: {
+                ...chartOptions.scales,
+                y: {
+                  ...chartOptions.scales.y,
+                  title: {
+                    display: true,
+                    text: 'Sales Amount ($)',
+                    font: {
+                      size: 12,
+                      weight: 'bold'
+                    }
+                  },
+                },
+                x: {
+                  ...chartOptions.scales.x,
+                  title: {
+                    display: true,
+                    text: 'Months',
+                    font: {
+                      size: 12,
+                      weight: 'bold'
+                    }
+                  },
                 },
               },
-              x: {
-                title: {
-                  display: true,
-                  text: 'Months',
-                },
-              },
-            },
-            plugins: {
-              legend: {
-                display: true,
-                position: 'top',
-              },
-              tooltip: {
-                mode: 'index',
-                intersect: false,
-              },
-            },
-          }}
-          height={400}
-        />
+            }}
+          />
+        </div>
       </div>
 
-      <div style={{ width: '45%', height: '400px' }}>
-        <h3>Total Sold and Not Sold</h3>
-        <Bar
-          data={{
-            labels: barChartData.labels,
-            datasets: [
-              {
-                label: 'Total Sold Items',
-                data: barChartData.totalSoldData,
-                backgroundColor: 'rgba(153, 102, 255, 0.6)',
-              },
-              {
-                label: 'Total Not Sold Items',
-                data: barChartData.totalNotSoldData,
-                backgroundColor: 'rgba(255, 99, 132, 0.6)',
-              },
-            ],
-          }}
-          options={{
-            responsive: true,
-            maintainAspectRatio: false,
-            scales: {
-              y: {
-                beginAtZero: true,
-                title: {
-                  display: true,
-                  text: 'Count',
+      <div style={{ marginTop: '40px' }}>
+        <h3 style={{ 
+          fontSize: '1.3rem', 
+          fontWeight: '700', 
+          marginBottom: '10px',
+          color: '#333'
+        }}>
+          📊 Inventory Status
+        </h3>
+        <p style={{ color: '#666', fontSize: '0.9rem', marginBottom: '20px' }}>
+          Comparison of sold vs. unsold items by month
+        </p>
+        <div style={{ height: '350px' }}>
+          <Bar
+            data={{
+              labels: barChartData.labels,
+              datasets: [
+                {
+                  label: 'Sold Items',
+                  data: barChartData.totalSoldData,
+                  backgroundColor: 'rgba(240, 147, 251, 0.8)',
+                  borderColor: 'rgba(240, 147, 251, 1)',
+                  borderWidth: 2,
+                  borderRadius: 8,
+                  hoverBackgroundColor: 'rgba(240, 147, 251, 1)',
+                },
+                {
+                  label: 'Unsold Items',
+                  data: barChartData.totalNotSoldData,
+                  backgroundColor: 'rgba(79, 172, 254, 0.8)',
+                  borderColor: 'rgba(79, 172, 254, 1)',
+                  borderWidth: 2,
+                  borderRadius: 8,
+                  hoverBackgroundColor: 'rgba(79, 172, 254, 1)',
+                },
+              ],
+            }}
+            options={{
+              ...chartOptions,
+              scales: {
+                ...chartOptions.scales,
+                y: {
+                  ...chartOptions.scales.y,
+                  title: {
+                    display: true,
+                    text: 'Item Count',
+                    font: {
+                      size: 12,
+                      weight: 'bold'
+                    }
+                  },
+                },
+                x: {
+                  ...chartOptions.scales.x,
+                  title: {
+                    display: true,
+                    text: 'Months',
+                    font: {
+                      size: 12,
+                      weight: 'bold'
+                    }
+                  },
                 },
               },
-              x: {
-                title: {
-                  display: true,
-                  text: 'Months',
-                },
-              },
-            },
-            plugins: {
-              legend: {
-                display: true,
-                position: 'top',
-              },
-              tooltip: {
-                mode: 'index',
-                intersect: false,
-              },
-            },
-          }}
-          height={400}
-        />
+            }}
+          />
+        </div>
       </div>
     </div>
   );
