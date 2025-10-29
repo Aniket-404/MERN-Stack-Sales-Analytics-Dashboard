@@ -7,12 +7,12 @@ const getBarChartData = async (req, res) => {
       return res.status(400).json({ message: 'Invalid or missing month parameter' });
     }
 
-    const monthNumber = new Date(`${month} 1, 2020`).getMonth() + 1;
+    const monthNumber = new Date(`${month} 1, 2022`).getMonth() + 1;
 
     const filter = {
       dateOfSale: {
-        $gte: new Date(`2020-${monthNumber}-01`),
-        $lt: new Date(`2020-${monthNumber + 1}-01`),
+        $gte: new Date(`2022-${monthNumber.toString().padStart(2, '0')}-01`),
+        $lt: new Date(`2022-${(monthNumber + 1).toString().padStart(2, '0')}-01`),
       },
     };
 

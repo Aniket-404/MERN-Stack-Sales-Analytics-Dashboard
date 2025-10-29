@@ -8,15 +8,15 @@ const getPieChartData = async (req, res) => {
       return res.status(400).json({ message: 'Invalid or missing month parameter' });
     }
 
-    const monthNumber = new Date(`${month} 1, 2020`).getMonth();
+    const monthNumber = new Date(`${month} 1, 2022`).getMonth();
 
-    const startDate = new Date(2020, monthNumber, 1);
-    const endDate = new Date(2020, monthNumber + 1, 0);
+    const startDate = new Date(2022, monthNumber, 1);
+    const endDate = new Date(2022, monthNumber + 1, 0);
 
     const transactions = await Transaction.find({
       dateOfSale: {
         $gte: startDate,
-        $lt: endDate
+        $lte: endDate
       }
     });
 
