@@ -10,7 +10,8 @@ const statisticsRoutes = require('./routes/statisticsRoutes');
 const barChartRoutes = require('./routes/barChartRoutes');
 const pieChartRoutes = require('./routes/pieChartRoutes');
 const combinedRoutes = require('./routes/combinedRoutes');
-const itemsRoutes = require('./routes/itemsRoutes'); 
+const itemsRoutes = require('./routes/itemsRoutes');
+const proxyRoutes = require('./routes/proxyRoutes'); 
 
 const app = express();
 
@@ -42,7 +43,8 @@ app.use('/api', statisticsRoutes);
 app.use('/api', barChartRoutes);
 app.use('/api', pieChartRoutes);
 app.use('/api', combinedRoutes);
-app.use('/api/items', itemsRoutes); 
+app.use('/api/items', itemsRoutes);
+app.use('/api', proxyRoutes); 
 
 app.use('/data', express.static(path.join(__dirname, 'data')));
 
