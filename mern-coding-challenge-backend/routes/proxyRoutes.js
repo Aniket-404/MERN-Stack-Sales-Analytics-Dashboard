@@ -36,17 +36,22 @@ router.get('/image-proxy', async (req, res) => {
     
     res.send(response.data);
   } catch (error) {
-    console.error('Error proxying image:', error.message);
-    
-    // Send a placeholder SVG instead of error
+    // Silently handle errors and send a nice placeholder SVG
     const placeholderSvg = `
       <svg width="200" height="200" xmlns="http://www.w3.org/2000/svg">
-        <rect width="200" height="200" fill="#f0f0f0"/>
-        <text x="50%" y="50%" text-anchor="middle" dy=".3em" font-size="60">📦</text>
+        <defs>
+          <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+          </linearGradient>
+        </defs>
+        <rect width="200" height="200" fill="url(#grad)"/>
+        <text x="50%" y="50%" text-anchor="middle" dy=".3em" font-size="80" fill="white" opacity="0.9">📦</text>
       </svg>
     `;
     
     res.set('Content-Type', 'image/svg+xml');
+    res.set('Cache-Control', 'public, max-age=86400');
     res.send(placeholderSvg);
   }
 });
