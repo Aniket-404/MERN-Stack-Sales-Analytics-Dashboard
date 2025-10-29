@@ -101,7 +101,7 @@ const TransactionsTable = ({ selectedMonth }) => {
                   <td>
                     <div className="product-image-wrapper">
                       <img 
-                        src={`http://localhost:5000/api/image-proxy?url=${encodeURIComponent(tx.image)}`}
+                        src={`${process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000'}/api/image-proxy?url=${encodeURIComponent(tx.image)}`}
                         alt={tx.title}
                         className="product-image"
                         loading="lazy"

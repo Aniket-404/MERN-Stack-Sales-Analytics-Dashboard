@@ -1,0 +1,7 @@
+FROM mongo:7
+
+# Expose MongoDB port
+EXPOSE 27017
+
+# Start MongoDB
+CMD ["mongod", "--bind_ip_all"]
