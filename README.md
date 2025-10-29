@@ -1,79 +1,145 @@
 # MERN Stack Sales Analytics Dashboard 🚀
 
-## Overview
+A modern, full-stack sales analytics dashboard with stunning UI, dark mode, and comprehensive data visualization.
 
-Welcome to the **MERN Stack Sales Analytics Dashboard**! This project is built using the MERN stack (MongoDB, Express.js, React.js, Node.js) and provides insights into sales data. Users can select a month and view statistics through interactive tables and bar charts, making it easy to visualize key sales metrics.
+## ✨ Features
 
-## Features ✨
+- **🎨 Modern UI**: Glassmorphism design with gradient accents and smooth animations
+- **🌙 Dark Mode**: Toggle between light and dark themes
+- **📊 Interactive Charts**: Bar charts and pie charts with Chart.js
+- **📱 Responsive Design**: Works perfectly on all devices
+- **🔍 Search & Filter**: Search transactions and filter by month
+- **📦 Image Proxy**: Handles external CDN images seamlessly
+- **💾 MongoDB Integration**: Efficient data storage and retrieval
+- **🚀 Fast Performance**: Optimized build with lazy loading
 
-- **Dynamic Month Selection**: Choose a month from a dropdown menu to filter the displayed data.
-- **Statistics Display**: View important metrics such as total sales, total sold items, and total not sold items in a user-friendly statistics box.
-- **Bar Charts**: Two bar charts visualize the sales data side by side, showing total sales and items sold/not sold.
-- **Responsive Design**: The application adjusts seamlessly to different screen sizes for optimal viewing.
+## 🛠️ Tech Stack
 
-## Tech Stack 🛠️
+**Frontend:**
+- React 18.3.1
+- Chart.js 4.4.4
+- Axios 1.7.7
+- CSS3 with glassmorphism effects
 
-- **Frontend**: 
-  - React.js
-  - Chart.js for data visualization
-  - Axios for API requests
+**Backend:**
+- Node.js with Express 4.21.0
+- MongoDB with Mongoose 8.7.0
+- Axios for image proxying
+- CORS enabled
 
-- **Backend**: 
-  - Node.js
-  - Express.js
-  - MongoDB for data storage
+## 🚀 Quick Start
 
-## Installation Steps ⚙️
+### Prerequisites
+- Node.js 18+ 
+- MongoDB (local or Atlas)
+- Git
 
-1. **Clone the repository**:
-   ```bash
-   git clone https://github.com/yourusername/mern-coding-challenge.git
-   cd mern-coding-challenge
-   ```
+### Installation
 
-2. **Install dependencies**:
-   - Navigate to the backend directory:
-     ```bash
-     cd mern-coding-challenge-backend
-     npm install
-     ```
-   - Then go to the frontend directory:
-     ```bash
-     cd ../mern-coding-challenge-frontend
-     npm install
-     ```
+1. **Clone the repository**
+```bash
+git clone https://github.com/Aniket-404/MERN-Stack-Sales-Analytics-Dashboard.git
+cd MERN-Stack-Sales-Analytics-Dashboard
+```
 
-3. **Set up MongoDB**: Update the `.env` file in the backend directory with your MongoDB connection string.
+2. **Setup Backend**
+```bash
+cd mern-coding-challenge-backend
+npm install
+cp .env.example .env
+# Edit .env with your MongoDB URI
+npm start
+```
 
-4. **Start the servers**:
-   - Start the backend server:
-     ```bash
-     cd ../mern-coding-challenge-backend
-     node server.js
-     ```
-   - Start the frontend server:
-     ```bash
-     cd ../mern-coding-challenge-frontend
-     npm start
-     ```
+3. **Setup Frontend**
+```bash
+cd ../mern-coding-challenge-frontend
+npm install
+cp .env.example .env
+# Edit .env with backend URL
+npm start
+```
 
-5. **View the application**: Open your browser and navigate to `http://localhost:3000` to access the application.
+4. **Seed Database**
+Visit: `http://localhost:5000/api/seed`
 
-## Usage 💡
+5. **Access Application**
+Open: `http://localhost:3000`
 
-Once the application is running, you can select a month from the dropdown to view relevant sales statistics. The statistics box will update to reflect total sales, total sold items, and total not sold items for the selected month. The bar charts provide a visual representation of the data, making it easy to analyze trends.
+## 🌐 Deployment
 
-## Contributing 🤝
+### Deploy to Render (Recommended)
 
-Contributions are always welcome! If you find any bugs or have suggestions for improvements, please feel free to submit a pull request or create an issue.
+This project is configured for easy deployment to Render using Docker and Blueprint.
 
-## License 📜
+**Quick Deploy:**
+1. Push to GitHub
+2. Go to [Render Dashboard](https://dashboard.render.com)
+3. Click "New +" → "Blueprint"
+4. Connect your repository
+5. Set environment variables:
+   - Backend: `MONGO_URI` (your MongoDB connection string)
+   - Frontend: `REACT_APP_BACKEND_URL` (your backend URL)
+6. Click "Apply"
 
-This project is licensed under the MIT License. Feel free to use, modify, and distribute it as you wish!
+**Detailed Instructions:** See [DEPLOYMENT.md](./DEPLOYMENT.md)
 
-# Result 📷
+### Environment Variables
 
-## Statistics Table
+**Backend (.env):**
+```env
+PORT=5000
+MONGO_URI=mongodb://localhost:27017/mern_coding_challenge
+NODE_ENV=development
+FRONTEND_URL=http://localhost:3000
+```
+
+**Frontend (.env):**
+```env
+REACT_APP_BACKEND_URL=http://localhost:5000
+```
+
+## 📦 Project Structure
+
+```
+MERN-Stack-Sales-Analytics-Dashboard/
+├── mern-coding-challenge-backend/
+│   ├── controllers/
+│   ├── models/
+│   ├── routes/
+│   ├── Dockerfile
+│   └── server.js
+├── mern-coding-challenge-frontend/
+│   ├── src/
+│   │   ├── components/
+│   │   ├── App.js
+│   │   └── App.css
+│   ├── Dockerfile
+│   └── nginx.conf
+├── render.yaml
+├── DEPLOYMENT.md
+└── README.md
+```
+
+## 🎯 API Endpoints
+
+- `GET /api/transactions` - Get paginated transactions
+- `GET /api/statistics` - Get sales statistics
+- `GET /api/bar-chart` - Get bar chart data
+- `GET /api/pie-chart` - Get category distribution
+- `GET /api/seed` - Seed database with initial data
+- `GET /api/image-proxy` - Proxy external images
+
+## 🎨 UI Features
+
+- **Glassmorphism**: Frosted glass effect with backdrop blur
+- **Gradients**: Purple, pink, and blue gradient themes
+- **Animations**: Smooth transitions and hover effects
+- **Dark Mode**: System-aware theme switching
+- **Loading States**: Skeleton loaders and spinners
+- **Responsive**: Mobile-first design approach
+
+## � Screenshots
 
 ![stat table](https://github.com/user-attachments/assets/a8f29ccb-59a2-4d6b-8940-21330e0650a6)
 
